@@ -30,9 +30,11 @@ export const login = async ({ email, password }) => {
         password,
       },
     );
+    
     return response.data;
+    
   } catch (error) {
-    console.log(error.message);
+    console.log(error.response.data.message);
   }
 };
 
@@ -41,7 +43,7 @@ export const logout = async() => {
     const response = await api.get("/api/auth/logout");
     return response.data
   } catch (error) {
-    console.log(error.message);
+    console.log(error.response.data.message);
     
   }
 }
