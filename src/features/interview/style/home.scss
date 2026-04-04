@@ -1,0 +1,291 @@
+// .home{
+//     width: 100%;
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     .interview-input-group{
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         gap: 1rem;
+//         min-width: 600px;
+//         min-height: 500px;
+//     }
+
+//     textarea{
+//         height: 100%;
+//         width: 100%;
+//         border: none;
+//         outline: none;
+//         padding-inline: 1rem;
+//         padding-block: 0.75rem;
+//         border-radius: 0.5rem;
+//         background-color: rgb(46, 58, 58);
+//         color: whitesmoke;
+//         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+//         resize: none;
+//     }
+//     .left{
+//         align-self: stretch;
+//         width: 50%;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 1rem;
+//     }
+//     .file-label{
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         padding: 0.75rem 1rem;
+//         background-color: #ecf3ff;
+//         color: rgb(27, 23, 23);
+//         border-radius: 0.5rem;
+//         cursor: pointer;
+//     }
+
+//     .input-group:has(textarea){
+//         height: 100%;
+//     }
+
+//     .right{
+//         display: flex;
+//         flex-direction: column;
+//         gap: 1rem;
+//         width: 50%;
+//         justify-content: flex-start;
+//         align-self: stretch;
+
+//     }
+// }
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+$teal: #1D9E75;
+$teal-light: #E1F5EE;
+$teal-dark: #0F6E56;
+
+* {
+  box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.home {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+//   background-color: #f5f5f3;
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: #ca2262;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+
+      em {
+        font-style: italic;
+        color: $teal;
+      }
+    }
+
+    p {
+      margin-top: 0.5rem;
+      font-size: 14px;
+      color: #f1e9e9;
+      font-weight: 300;
+    }
+  }
+
+  .interview-input-group {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    min-height: 500px;
+    background: #464040;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .divider {
+    width: 0.5px;
+    background: rgba(0, 0, 0, 0.08);
+    align-self: stretch;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ece9e9;
+    margin-bottom: 6px;
+  }
+
+  .highlight {
+    font-size: 11px;
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0;
+    color: $teal;
+    margin-left: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background-color: #30302b;
+    color: whitesmoke;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    resize: none;
+    line-height: 1.6;
+    transition: border-color 0.15s;
+
+    &:focus {
+      border-color: $teal;
+    }
+
+    &::placeholder {
+      color: #bbb;
+    }
+  }
+
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    textarea {
+      flex: 1;
+      color: whitesmoke;
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &:has(textarea) {
+      flex: 1;
+
+      textarea {
+        flex: 1;
+        min-height: 120px;
+      }
+    }
+  }
+
+  .file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 1.25rem;
+    border: 0.5px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #666662;
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+
+    &:hover {
+      border-color: $teal;
+      background-color: $teal-light;
+    }
+
+    .upload-icon {
+      width: 32px;
+      height: 32px;
+      background: $teal-light;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        color: $teal;
+      }
+    }
+
+    .upload-text {
+      font-size: 13px;
+      color: #888;
+      font-weight: 300;
+
+      strong {
+        color: $teal;
+        font-weight: 500;
+      }
+    }
+
+    .upload-sub {
+      font-size: 11px;
+      color: #bbb;
+    }
+  }
+
+  .primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 0.75rem 1.5rem;
+    background: $teal;
+    color: $teal-light;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: $teal-light;
+    }
+
+    &:hover {
+      background: $teal-dark;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

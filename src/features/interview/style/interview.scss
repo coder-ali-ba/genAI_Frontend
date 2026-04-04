@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+// COLORS
+$teal:#1D9E75; $teal-lt:#E1F5EE; $pink:#ca2262;
+$bg:#30302b; $card:#464040; $surface:#666662;
+$border:rgba(0,0,0,0.18); $border-lt:rgba(255,255,255,0.07);
+$white:whitesmoke; $muted:#f1e9e9; $hint:#bbb;
+$amber:#EF9F27; $red:#E24B4A;
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+// PAGE
+.ir-page{
+  background:$bg;
+  padding:2.5rem 1rem;
+  font-family:'DM Sans';
+  color:$white;
+  overflow-x:hidden;
+}
+
+.ir-container{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+
+// HEADER
+.ir-header{
+  text-align:center;
+
+  h1{
+    font-family:'Instrument Serif';
+    font-size:2.4rem;
+    color:$pink;
+
+    em{color:$teal;}
+  }
+
+  p{color:$muted;font-size:14px;}
+}
+
+// SCORE
+.score-card{
+  display:flex;
+  gap:2rem;
+  background:$card;
+  padding:1.5rem;
+  border-radius:12px;
+}
+
+.score-ring-wrap{
+  width:110px;height:110px;position:relative;
+}
+
+.score-svg{width:100%;height:100%;transform:rotate(-90deg);}
+
+.ring-track{stroke:rgba(255,255,255,0.1);fill:none;stroke-width:8;}
+.ring-progress{fill:none;stroke-width:8;stroke-linecap:round;}
+
+.ring-high{stroke:$teal;}
+.ring-medium{stroke:$amber;}
+.ring-low{stroke:$red;}
+
+.score-label{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+}
+
+// TABS
+.ir-tabs{
+  display:flex;
+  background:$card;
+  padding:4px;
+  border-radius:10px;
+}
+
+.ir-tab{
+  flex:1;
+  padding:8px;
+  border:none;
+  background:transparent;
+  color:$hint;
+  cursor:pointer;
+}
+
+.ir-tab--active{
+  background:$teal;
+  color:$white;
+  border-radius:8px;
+}
+
+// PANEL
+.ir-panel{
+  display:flex;
+  flex-direction:column;
+  gap:0.6rem;
+  width:100%;
+}
+
+// 🔥 ACCORDION FINAL (NO BUGS)
+.accordion{
+  width:100%;
+  background:$card;
+  border-radius:10px;
+  border:1px solid $border;
+  overflow:hidden;
+}
+
+.accordion__trigger{
+  width:100%;
+  padding:1rem 1.2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:none;
+  background:transparent;
+  color:$white;
+  cursor:pointer;
+}
+
+.accordion__title{
+  display:flex;
+  gap:10px;
+  width:100%;
+}
+
+// GRID ANIMATION (NO SHRINK)
+.accordion__body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows 0.35s ease;
+}
+
+.accordion--open .accordion__body{
+  grid-template-rows:1fr;
+}
+
+.accordion__inner{
+  overflow:hidden;
+  min-height:0;
+  padding:0 1.2rem;
+}
+
+.accordion--open .accordion__inner{
+  padding:1rem 1.2rem;
+  border-top:1px solid $border-lt;
+}
+
+// CONTENT
+.q-pill{
+  background:rgba(29,158,117,0.15);
+  color:$teal;
+  padding:3px 8px;
+  border-radius:6px;
+  font-size:11px;
+}
+
+.q-question{
+  width:100%;
+  font-size:14px;
+}
+
+.q-block{
+  background:$surface;
+  padding:10px;
+  border-radius:8px;
+}
+
+.q-block--answer{
+  background:rgba(29,158,117,0.15);
+}
+
+// GAPS
+.gaps-card{width:100%;background:$card;border-radius:10px;}
+
+.gap-row{
+  display:flex;
+  justify-content:space-between;
+  padding:12px;
+  border-bottom:1px solid $border-lt;
+}
+
+// TASKS
+.task-list{
+  width:100%;
+  list-style:none;
+
+  li{margin-bottom:6px;}
+}
