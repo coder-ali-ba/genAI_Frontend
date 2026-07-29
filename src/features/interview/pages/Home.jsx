@@ -1,41 +1,20 @@
-// import React from 'react'
-// import "../style/home.scss"
-// const Home = () => {
-//   return (
-//     <main className='home'>
-//         <div className="interview-input-group">
-//           <div className='left'>
-//             <label htmlFor="jobDescription">Job Description</label>
-//             <textarea name="jobDescription" id="jobDescription" placeholder='Enter job description here.....'></textarea>
-//         </div>
-//         <div className='right'>
-//             <div className='input-group' >
-//                 <p>Resume <small className='highlight'> (Use resume and self description for better result) </small></p>
-//                 <label className='file-label' htmlFor="resume">Upload Resume</label>
-//                 <input hidden type="file" name="resume" id="resume" accept='.pdf' />
-//             </div>
-//             <div className='input-group'>
-//                 <label htmlFor="selfDescription"></label>
-//                 <textarea type="text" name='selfDescription' id='selfDescription' placeholder='Enter self description here....' />
-//             </div>
-//             <button className='button primary-button'>Generate Interview Report</button>
-//         </div>
-//         </div>
-        
-//     </main>
-//   )
-// }
-
-// export default Home
-
-
-
-
-
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import "../style/home.scss"
+import {useInterview} from "../hook/useInterview.js"
+import { useNavigate } from 'react-router'
 
 const Home = () => {
+  const {loading , generateReport} = useInterview()
+  const [jobDescription , setJobDescription] =useState('')
+  const [selfDescription , setJSelfDescription] =useState('')
+  const resumeInputRef = useRef()
+  const navigate = useNavigate()
+
+  const handleGenerateReport = async() => {
+    const resume = resumeInputRef.current.files[0]
+    const data =await generateReport({jobDescription , selfDescription , resume})
+    navigate(`/interview/${data._id}`)
+  }
   return (
     <main className='home'>
       <div className="header">
@@ -48,6 +27,7 @@ const Home = () => {
           <label className="field-label" htmlFor="jobDescription">Job Description</label>
           <textarea
             name="jobDescription"
+            onChange={(e)=>{setJobDescription(e.target.value)}}
             id="jobDescription"
             placeholder='Paste the full job description here — role, responsibilities, requirements...'
           ></textarea>
@@ -71,19 +51,20 @@ const Home = () => {
               <span className="upload-text"><strong>Click to upload</strong> your resume</span>
               <span className="upload-sub">PDF only · max 10 MB</span>
             </label>
-            <input hidden type="file" name="resume" id="resume" accept='.pdf' />
+            <input ref={resumeInputRef} hidden type="file" name="resume" id="resume" accept='.pdf' />
           </div>
 
           <div className='input-group'>
             <label className="field-label" htmlFor="selfDescription">Self Description</label>
             <textarea
               name='selfDescription'
+              onChange={(e)=>{setJSelfDescription(e.target.value)}}
               id='selfDescription'
               placeholder='Briefly describe yourself — background, strengths, career goals...'
             />
           </div>
 
-          <button className='button primary-button'>
+          <button className='button primary-button' onClick={handleGenerateReport}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
