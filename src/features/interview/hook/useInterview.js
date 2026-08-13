@@ -4,7 +4,7 @@ import {getAllInterviewReports , generateInterviewReport , getInterviewReportbyI
 
 
 
-const useInterview = () => {
+export const useInterview = () => {
  const context = useContext(interviewContext)
  if(!context){
     throw new Error("useInterview must be used in interviewProvider")
@@ -14,8 +14,9 @@ const useInterview = () => {
 
  const generateReport = async({selfDescription , jobDescription , resume})=> {
     setLoading(true)
+    let response = null
     try {
-        const response =await generateInterviewReport({selfDescription , jobDescription , resume})
+         response =await generateInterviewReport({selfDescription , jobDescription , resume})
         setReport(response.interviewReport)       
     } catch (error) {
         console.log(error);
@@ -23,12 +24,14 @@ const useInterview = () => {
     }finally{
         setLoading(false)
     }
+    return response.interviewReport
  }
 
  const getReportById = async({interviewId}) =>{
    setLoading(true)
+   let response = null
    try {
-    const response = await getInterviewReportbyId(interviewId);
+     response = await getInterviewReportbyId(interviewId);
     setReport(response.interviewReport)
    } catch (error) {
     console.log(error);
@@ -36,12 +39,14 @@ const useInterview = () => {
    }finally{
     setLoading(false)
    }
+   return response.interviewReport
  }
 
  const getReports = async() => {
     setLoading(true)
+    let response = null
     try {
-        const response = await getAllInterviewReports()
+         response = await getAllInterviewReports()
         setReports(response.interviewReports)
     } catch (error) {
         console.log(error);
@@ -49,6 +54,7 @@ const useInterview = () => {
     }finally{
         setLoading(false)
     }
+    return response.interviewReports
  }
  return {loading , report , reports , generateReport , getReportById , getReports }
 }

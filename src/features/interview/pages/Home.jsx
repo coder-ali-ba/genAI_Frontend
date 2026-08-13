@@ -15,6 +15,14 @@ const Home = () => {
     const data =await generateReport({jobDescription , selfDescription , resume})
     navigate(`/interview/${data._id}`)
   }
+
+  if(loading){
+    return (
+      <main className='loading-screen'>
+        <h1>Loading Your Interview Plan........</h1>
+      </main>
+    )
+  }
   return (
     <main className='home'>
       <div className="header">
@@ -73,6 +81,8 @@ const Home = () => {
         </div>
       </div>
     </main>
+
+    
   )
 }
 
