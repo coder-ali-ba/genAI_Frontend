@@ -46,8 +46,14 @@ export const useAuth = () => {
     const getUser = async () => {
       try {
         const response = await getMe();
-      setUser(response);
-      } catch (error) {} finally{
+        if(response){
+
+          setUser(response);
+        }
+      } catch (error) {
+        console.log("user not found");
+        
+      } finally{
         setLoading(false);
       }     
     };
