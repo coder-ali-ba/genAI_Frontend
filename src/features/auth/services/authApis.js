@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL : "http://gen-ai-ebon-omega.vercel.app",
+  baseURL : "https://gen-ai-ebon-omega.vercel.app",
   withCredentials : true
 })
 
