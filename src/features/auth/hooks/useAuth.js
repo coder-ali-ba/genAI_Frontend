@@ -15,6 +15,8 @@ export const useAuth = () => {
       setUser(data);
       navigate("/");
     } catch (error) {
+      console.log(error.message);
+      
     } finally {
       setLoading(false);
     }
@@ -26,6 +28,8 @@ export const useAuth = () => {
       setUser(data);
       navigate("/login");
     } catch (error) {
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }

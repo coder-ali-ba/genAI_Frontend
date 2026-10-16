@@ -1,30 +1,45 @@
+
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
-    withCredentials: true 
-})
+  baseURL: "http://localhost:3000",
+  withCredentials: true,
+});
 
-export const generateInterviewReport = async({jobDescription , selfDescription , resume})=>{
-    const formData = new FormData()
-    formData.append("jobDescription", jobDescription)
-    formData.append('selfDescription' , selfDescription)
-    formData.append("resume" , resume)
+export const generateInterviewReport = async ({
+  jobDescription,
+  selfDescription,
+  resume,
+}) => {
+  const formData = new FormData();
 
-    const response =await api.post('api/interview/generate' , formData , {
-        headers: {
-            "Content-Type" : 'multipart/form-data'
-        }
-    })
-    return response.data
-} 
+  formData.append("jobDescription", jobDescription);
+  formData.append("selfDescription", selfDescription || "");
 
-export const getInterviewReportbyId = async({interviewId}) => {
-  const response =await api.get(`api/interview/report/${interviewId}`)
-  return response.data
-}
+  if (resume instanceof File) {
+    formData.append("resume", resume);
+  }
 
-export const getAllInterviewReports =async () => {
-    const response = await api.get("api/interview/getAllInterviewTReport");
-    return response.data
-}
+  const response = await api.post(
+    "/api/interview/generate",
+    formData
+  );
+
+  return response.data;
+};
+
+export const getInterviewReportbyId = async (interviewId) => {
+  const response = await api.get(
+    `/api/interview/report/${interviewId}`
+  );
+
+  return response.data;
+};
+
+export const getAllInterviewReports = async () => {
+  const response = await api.get(
+    "/api/interview/getAllInterviewTReport"
+  );
+
+  return response.data;
+};
